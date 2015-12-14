@@ -2,5 +2,9 @@
 
 This project rocks and uses MIT-LICENSE.
 
-* TEMPLATES IN INITIALIZERS
-* DEVISE CONFIG
+TO-DO
+* Maybe 404.html pages?
+* Contact module
+
+LONG TERM TO-DO
+* More deep module customization
