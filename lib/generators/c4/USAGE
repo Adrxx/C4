@@ -1,0 +1,9 @@
+Description:
+    Initializes C4
+
+Example:
+    rails generate c4 NAME
+
+    This will create:
+      *C4 homepage with the correct name
+      *Login system (devise)

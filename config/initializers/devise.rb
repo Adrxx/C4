@@ -212,7 +212,7 @@ Devise.setup do |config|
   # config.default_scope = :user
 
   # Set this configuration to false if you want /users/sign_out to sign out
-  # only the current scope. By default, Devise signs out all scopes.
+  # only the current scope. By default, Devise signgns out all scopes.
   # config.sign_out_all_scopes = true
 
   # ==> Navigation configuration
@@ -251,10 +251,10 @@ Devise.setup do |config|
   #     mount MyEngine, at: '/my_engine'
   #
   # The router that invoked `devise_for`, in the example above, would be:
-  config.router_name = :C4
+  config.router_name = :c4
   config.parent_controller = 'C4::ApplicationController'
   #
   # When using omniauth, Devise cannot automatically set Omniauth path,
   # so you need to do it manually. For the users scope, it would be:
-  # config.omniauth_path_prefix = '/my_engine/users/auth'
+  #config.omniauth_path_prefix = '/c4'
 end

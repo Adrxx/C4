@@ -1,0 +1,68 @@
+@import "global";
+@import "morphed-skeleton";
+@import "c4";
+@import "mnt-photo-manager";
+
+
+/*
+Batukeira Admin specific styles only
+*/
+
+.dealer_visible_address
+{
+  display: none;
+
+  &.show
+  {
+    display: block;
+  }
+}
+
+
+
+#map-location-picker
+{
+  height: 250px;
+  margin: 20px 0;
+}
+
+//__: TWITTER TYPEAHEAD CUSTOM
+.tt-dropdown-menu
+{
+  //background-color: white;
+  @include box-shadow();
+  width: 100% !important;
+
+
+}
+
+.tt-suggestion
+{
+  background-color:$c1-bg;
+  color: $c4;
+  padding: 10px 0px;
+  border-bottom:solid 1px $c4-bg;
+
+
+  p
+  {
+    margin-bottom: 0px;
+    padding: 0 10px;
+  }
+
+  &.tt-cursor
+  {
+    color: $c1-bg;
+    background-color: $c4;
+  }
+}
+
+input.tt-hint
+{
+  color: transparentize($c4-fg, 0.4);
+}
+
+.twitter-typeahead
+{
+  width: 100%;
+}

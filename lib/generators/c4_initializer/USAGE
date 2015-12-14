@@ -1,8 +1,0 @@
-Description:
-    Explain the generator
-
-Example:
-    rails generate c4_initializer Thing
-
-    This will create:
-        what/will/it/create

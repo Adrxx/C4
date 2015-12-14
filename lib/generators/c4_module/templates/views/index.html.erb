@@ -1,0 +1,54 @@
+<%%= content_for :title, "<%= name_title %>" %>
+
+<%% content_for :header_content do %>
+<h1><strong><%= name_title %></strong></h1>
+<%% end %>
+
+<%%= link_to main_app.new_<%= singular %>_path, class: 'c4-button-success' do %>
+  Agregar nuevo
+<%% end %>
+<div class="c4-list-collection">
+  <%% if @<%= name_ %>.empty? %>
+    <div class="no-content">
+      <span class="icon-error"></span>
+      <div>Sin contenido</div>
+    </div>
+  <%% end %>
+  <%% @<%= name_ %>.each do |<%= singular %>| %>
+  <div class="c4-list-cell">
+    <div class="row top-row">
+      <div class="nine columns">
+        <div class="title">
+          <%%= <%= singular %>.<%= @first %> %>
+        </div>
+      </div>
+      <div class="three columns">
+        <div class="date">
+          <%%= <%= singular %>.created_at.strftime('%d/%m/%Y') %>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <!--
+      <div class="four columns">
+        <div class="thumbnail" style="background-image: url(<%%#= photo_if_exists(<%= singular %>) %>)"></div>
+      </div>
+      -->
+      <div class="twelve columns">
+        <div class="description">
+          <%%#= <%= singular %>.something %>
+        </div>
+        <div class="row buttons-container">
+        <%%= link_to main_app.edit_<%= singular %>_path(<%= singular %>), class:'c4-button-primary' do %>
+          <span class="icon-edit"></span>
+        <%% end %>
+          <%%= link_to main_app.<%= singular %>_path(<%= singular %>), method: :delete, data: { confirm: 'Esta acción no puede deshacerse. ¿Está seguro que desea borrar este elemento?'}, class:'c4-button-warning' do %>
+            <span class="icon-delete"></span>
+          <%% end %>
+        </div>
+      </div>
+    </div>
+  </div>
+  <%% end %>
+</div>
+

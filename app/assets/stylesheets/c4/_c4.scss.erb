@@ -1,0 +1,1198 @@
+/* 
+
+C4 Managment System V 1.0.0
+Adrián Rubio 2015
+
+---> Index:
+
+** Sass magic
+** Color Palette
+
+* Nav Bars
+* Headers
+* Basic HTML Elements
+* Buttons
+* Inputs
+* Notifications
+* Data displayers... Cells
+* Smart Behaiviors
+*/
+
+
+@import "_icons";
+
+
+/* Sass
+–––––––––––––––––––––––––––––––––––––––––––––––––– */
+
+
+/* Color Palette
+–––––––––––––––––––––––––––––––––––––––––––––––––– */
+
+@function bg-transform($color,$lightness,$saturation) {
+
+  @if (saturation($color) + $saturation) > 100 {
+    $saturation: 80;
+  }
+
+  @if (lightness($color) - $lightness) < 0 {
+    $lightness: 20;
+  }
+
+  @return hsla(hue($color), saturation($color) + $saturation, lightness($color) - $lightness , alpha($color)) ;
+}
+
+@function fg-transform($color,$lightness,$saturation) {
+
+  @if (saturation($color) - $saturation) < 0 {
+    $saturation: 20;
+  }
+
+  @if (lightness($color) + $lightness) > 100 {
+    $lightness: 80;
+  }
+
+  @return hsla(hue($color), saturation($color) - $saturation, lightness($color) + $lightness , alpha($color)) ;
+}
+/*
+ http://coolors.co/app/183138-21897e-7fb8ff-3ba99c-69d1c5 //Atlantis
+ http://coolors.co/app/0a0838-963451-f9564f-f3c677-e5dad0 //Solar
+ http://coolors.co/app/3b1747-4a5187-418fba-c16c8b-efffef
+ http://coolors.co/app/383838-515151-70a7bf-fcce7e-f9f4ed
+ http://coolors.co/app/383838-4b5056-fcce7e-5a9fbc-f9f4ed
+ http://coolors.co/app/334f3e-698951-c9e569-8393c1-fffefc
+
+ */
+<% s = 'https://coolors.co/app/46593f-b2a94a-e8a247-98e579-fcf4af' %>
+<% s.sub! 'https://coolors.co/app/', '' %>
+<% a = s.split '-' %>
+
+<% 5.times do |i| %>
+  <%= "$c#{i+1}: ##{a[i]};" %>
+<% end %>
+
+$c1-bg: bg-transform($c1,20,20);
+$c2-bg: bg-transform($c2,20,20);
+$c3-bg: bg-transform($c3,20,20);
+$c4-bg: bg-transform($c4,20,20);
+$c5-bg: bg-transform($c5,30,13);
+
+$c1-fg: fg-transform($c1,20,8);
+$c2-fg: fg-transform($c2,20,8);
+$c3-fg: fg-transform($c3,18,-18);
+$c4-fg: fg-transform($c4,17,-18);
+$c5-fg: fg-transform($c5,20,8);
+
+$c1-inv: invert($c1);
+$c2-inv: invert($c2);
+$c3-inv: invert($c3);
+$c4-inv: invert($c4);
+$c5-inv: invert($c5);
+
+$success-c: #85C96A;
+$alert-c: #E8A247;
+$warning-c: #F2461F;
+$notice-c: #2A8093;
+
+
+$success-c-bg: bg-transform($success-c,20,20);
+$alert-c-bg: bg-transform($alert-c,20,20);
+$warning-c-bg: bg-transform($warning-c,20,24);
+$notice-c-bg: bg-transform($notice-c,20,20);
+
+$success-c-fg: fg-transform($success-c,20,8);
+$alert-c-fg: fg-transform($alert-c,18,-18);
+$warning-c-fg: fg-transform($warning-c,17,-18);
+$notice-c-fg: fg-transform($notice-c,13,18);
+
+$light-c: #CDD5D3;
+$dark-c: #020202;
+
+
+$palette: $c1, $c2, $c3, $c4, $c5, $c1-bg, $c2-bg, $c3-bg, $c4-bg, $c5-bg,$c1-fg, $c2-fg, $c3-fg, $c4-fg, $c5-fg,$c1-inv, $c2-inv, $c3-inv, $c4-inv, $c5-inv,$success-c, $alert-c, $warning-c, $notice-c ,$success-c, $success-c-bg, $alert-c-bg, $warning-c-bg, $notice-c-bg ,$success-c-bg, $success-c-fg, $alert-c-fg, $warning-c-fg, $notice-c-fg ,$success-c-fg;
+
+
+.palette
+{
+  position:fixed;
+  z-index: 1000;
+  //opacity: 0.1;
+
+  border: solid 2px white;
+  
+  &:hover > .p-color
+  {
+    opacity: 1.0;
+    height: 35px;
+    width: 35px;
+  }
+
+  .p-color 
+  {
+    opacity: 0.4;
+
+    @include transition-duration(0.2s);
+    @include transition-property(all);
+    height: 15px;
+    width: 15px;
+    float: left;
+
+    @for $i from 1 through length($palette) {
+      &:nth-child(#{$i}) {
+        background-color: nth($palette, $i);
+        @if ($i - 1) % 5 == 0 
+        {
+          clear: both;
+        }
+      }
+    }
+  } 
+}
+
+
+/* Nav Bars
+–––––––––––––––––––––––––––––––––––––––––––––––––– */
+ $nav-bar-height: 44px;
+
+.c4-nav
+{
+  position: fixed;
+  @include horizontal-stack();
+  @include flex-wrap(wrap);
+  padding-top:$nav-bar-height;
+  z-index: 500;
+  width: 100%;
+  height: auto;
+  overflow: hidden;
+  @include single-transition(all,0.3s);
+  background-color: $c4;
+  top:-100%; 
+  @include background-image(linear-gradient(to bottom,$c4, transparentize($c4, 0.30), transparentize($c4, 1.0)));
+
+  @include tablet
+  {
+      height: $nav-bar-height;
+      background-color: transparentize(black, 0.95);
+      padding-top: 0px;
+      top:0px;
+  }
+
+  &.nav-displayed
+  {
+    top: 0px;
+  }
+
+  .spacer
+  {
+    @include flex-grow(1);
+  }
+  
+  &-scrolling
+  {
+    background-color: $c4;
+  }
+
+  [class^="icon"]
+  {
+    margin-right:5px;
+  }
+
+  a 
+  {
+    display: block;
+    width: 100%;
+    text-decoration: none;
+    text-transform: uppercase;
+    text-align: center;
+    font-size: 14px;
+    font-weight: 600;
+    padding: 14px 8px;
+    margin-right: 10px;
+    border-radius:2px;
+
+    border: solid 1px transparent;
+    color:$c1;
+
+    @include transition-duration(0.3s);
+    @include transition-property(all);
+
+    span.description {
+      display: none;
+    }
+
+    &:hover
+    {
+      background-color:transparent;
+      color: $c1;
+    }
+    &:active
+    {
+      background-color:$c1;
+    } 
+    
+    @include tablet 
+    {
+
+      display: inline;
+      width: auto;
+      padding: 4px 8px;
+      font-size: 11px;
+
+
+      &:hover
+      {
+        background-color:$c4-fg;
+        color: $c4-bg;
+      }
+      &:active
+      {
+        background-color:$c1;
+      } 
+    }
+  }
+}
+
+.c4-home-button
+{
+  position:fixed;
+  display: block;
+  top: 0px;
+  left: 0px;
+  padding: 0 10px;
+
+  height: $nav-bar-height;
+  line-height:  $nav-bar-height;
+  text-decoration: none;
+  text-align: center;
+  z-index: 1000;
+
+  cursor: pointer;
+  @include user-select(none);
+  text-transform: uppercase;
+  font-size: 11px;
+  color: $c1;
+
+  background-color: transparentize($c1-fg, 0.5);
+  padding-right: 100%;
+
+  &:hover
+  {
+    color: $c1;
+  }
+
+
+  @include tablet
+  {
+    background-color: transparent;
+    padding-right: 0px;
+  }
+
+
+}
+
+
+.c4-menu-button
+{
+
+  position:fixed;
+  display: block;
+  cursor: pointer;
+  top: 0px;
+  right: 0px;
+  //padding: 0 10px;
+  padding-left:10px;
+
+
+  height: $nav-bar-height;
+  width:  $nav-bar-height;
+  line-height:  $nav-bar-height;
+    color: $c1;
+
+  text-decoration: none;
+  text-align: center;
+  //background-color: red;
+  font-size: x-large;
+  z-index: 1000;
+
+  @include user-select(none);
+  cursor: pointer;
+
+  @include tablet
+  {
+    display: none;
+  }
+
+}
+
+
+
+
+/* Header
+–––––––––––––––––––––––––––––––––––––––––––––––––– */
+.c4-header
+{
+  background-color:$c4;
+  width: 100%;
+  height: auto;
+  margin-bottom: 10px;
+  padding-top: $nav-bar-height + 10;
+  padding-bottom: 10px;
+  @include box-shadow(0px 1px 3px $c1);
+  color: $c1;
+  text-align: center;
+
+  @include tablet { margin-bottom: 30px; }
+
+  a
+  {
+    //@include flex-grow(1);
+    @include transition-duration(0.3s);
+    @include transition-property(all);
+    display: block;
+    font-size: 24px;
+    color:$c1;
+    border-radius: 2px;
+    border:solid 1px $c1;
+    text-decoration: none;
+    padding: 2px 30px;
+    margin: 0 10px;
+    &:hover
+    {
+      border:solid 1px transparentize(black, 1.0);
+      background-color: $c1;
+      color:$c3;
+
+    }
+  }
+
+  h1
+  {
+    margin: 0px 25px;
+    font-size: 1.8em;
+
+    @include tablet
+    {
+      font-size: 2.3em;
+    }
+  }
+
+ 
+
+  
+}
+
+
+
+/* Basic HTML Elements
+–––––––––––––––––––––––––––––––––––––––––––––––––– */
+a {
+  color: $warning-c; }
+a:hover {
+  color: $warning-c-fg;  }
+
+body
+{
+  background-color: $c1;
+  color: $c5;
+}
+
+hr
+{
+  border-top: 1px solid transparentize($light-c, 0.4);
+
+}
+
+hr.c4-mini {
+  width: 92%;
+  margin-top: .6rem;
+  margin-bottom: .7rem;
+  border-width: 0;
+  border-top: 1px dashed transparentize(white, 0.7);
+}
+
+
+
+
+
+/* Buttons
+–––––––––––––––––––––––––––––––––––––––––––––––––– */
+%c4-button
+{
+  display: inline-block;
+  height: 38px;
+  padding: 0 30px;
+  text-align: center;
+  font-size: 11px;
+  font-weight: 600;
+  line-height: 38px;
+  letter-spacing: .1rem;
+  text-transform: uppercase;
+  text-decoration: none;
+  white-space: nowrap;
+  border-radius: 2px;
+  border:none;
+  cursor: pointer;
+  box-sizing: border-box;
+  @include transition-duration(0.3s);
+  @include transition-property(all);
+  width:100%;
+  margin-bottom: 10px;
+
+
+  color: $c1;
+  &:hover
+  {
+    color: $c1;
+  }
+}
+
+.c4-button-primary
+{
+  @extend %c4-button;
+  background-color: $c3;
+
+  @include tablet
+  {
+    &:hover,&:focus
+    {
+      color: $c3-bg;
+      background-color: $c3-fg;
+    }
+  }
+}
+
+.c4-button-secondary
+{
+  @extend %c4-button;
+  background-color: $c4;
+
+
+  @include tablet
+  {
+    &:hover,&:focus
+    {
+      color: $c4-bg;
+      background-color: $c4-fg;
+    }
+  }
+}
+
+.c4-button-warning
+{
+  @extend %c4-button;
+  background-color: $warning-c;
+
+  @include tablet
+  {
+    &:hover,&:focus
+    {
+      color: $warning-c-bg;
+      background-color: $warning-c-fg;
+    }
+  }
+}
+
+.c4-button-success
+{
+  @extend %c4-button;
+  background-color: $success-c;
+
+  @include tablet
+  {
+    &:hover,&:focus
+    {
+      color: $success-c-bg;
+      background-color: $success-c-fg;
+    }
+  }
+}
+
+.c4-button-alert
+{
+  @extend %c4-button;
+  background-color: $alert-c;
+
+  @include tablet
+  {
+    &:hover,&:focus
+    {
+      color: $alert-c-bg;
+      background-color: $alert-c-fg;
+    }
+  }
+}
+
+.c4-button-notice
+{
+  @extend %c4-button;
+  background-color: $notice-c;
+
+  @include tablet
+  {
+    &:hover,&:focus
+    {
+      color: $notice-c-bg;
+      background-color: $notice-c-fg;
+    }
+  }
+}
+
+/* Inputs
+–––––––––––––––––––––––––––––––––––––––––––––––––– */
+
+input[type="text"]
+{
+
+  &:after
+  {
+    position:fixed;
+    top:0px;
+    left: 0px;
+    display: block;
+    content: "";
+    background-color: red;
+    height: 50px;
+    width: 50px;
+  }
+
+}
+
+
+
+
+/* Forms
+–––––––––––––––––––––––––––––––––––––––––––––––––– */
+
+.field-options-wrapper
+{
+  width: 100%;
+  //text-align: center;
+  margin-top: -5px;
+  margin-bottom: 20px;
+  text-transform: uppercase;
+  font-size: 11px;
+
+  input
+  {
+    margin:0 10px;
+  }
+
+}
+
+.error-explanation-header
+{
+  border:solid 1px $warning-c;
+  padding:10px;
+    background-color: transparentize($warning-c-bg, 0.8);
+
+  color: $warning-c;
+  text-align: center;
+  margin-bottom: 10px;
+  font-size: 18px;
+  @include tablet{
+      font-size: 22px;
+  }
+}
+
+.error-message {
+  text-align: center;
+  color: $warning-c;
+  background-color: transparentize($warning-c-bg, 0.8);
+  border:solid 1px $warning-c;
+  border-top: none;
+  padding: 2px;
+  margin-top: -14px;
+  margin-bottom:10px;
+}
+
+.field_with_errors:first-child {
+  position: relative;
+  &:after
+  {
+    content: "";
+    position: absolute;
+    display: block;
+    width: 0;
+    height: 0;
+    border-bottom: 6px solid transparent;
+    /* left arrow slant */
+    border-top: 6px solid transparent;
+    /* right arrow slant */
+    border-left: 6px solid rgba(239, 82, 64, 0.8);
+    /* bottom, add background color here */
+    font-size: 0;
+    line-height: 0;
+    top: 50%;
+    margin-top: -6px;
+    left: -12px;
+  }
+}
+
+
+::-webkit-input-placeholder {
+   color: $c1;
+   font-style: italic;
+}
+
+:-moz-placeholder { /* Firefox 18- */
+     color: $c1;
+     font-style: italic;
+}
+
+::-moz-placeholder {  /* Firefox 19+ */
+     color: $c1;
+     font-style: italic;  
+}
+
+:-ms-input-placeholder {  
+     color: $c1;
+     font-style: italic;  
+}
+
+
+input[type="email"],
+input[type="number"],
+input[type="search"],
+input[type="text"],
+input[type="tel"],
+input[type="url"],
+input[type="password"],
+textarea,
+select {
+  @include appearance(none);
+  height: 38px;
+  padding: 6px 10px; /* The 6px vertically centers text on FF, ignored by Webkit */
+  background-color: transparentize(white, 0.7);
+  border: 1px solid transparentize(white, 1);
+  //border-radius: 4px;
+  box-shadow: none;
+  color: white;
+  font-family: "Lato", sans-serif;
+  font-size: 0.9em;
+}
+/* Removes awkward default styles on some inputs for iOS */
+input[type="email"],
+input[type="number"],
+input[type="search"],
+input[type="text"],
+input[type="tel"],
+input[type="url"],
+input[type="password"],
+textarea {
+  @include appearance(none);
+}
+textarea {
+  min-height: 65px;
+  padding-top: 6px;
+  padding-bottom: 6px; }
+input[type="email"]:focus,
+input[type="number"]:focus,
+input[type="search"]:focus,
+input[type="text"]:focus,
+input[type="tel"]:focus,
+input[type="url"]:focus,
+input[type="password"]:focus,
+textarea:focus,
+select:focus {
+  border: 1px solid $c2-fg;
+  outline: 0; }
+label,
+legend {
+  display: block;
+  margin-bottom: .5rem;
+  font-weight: 600; }
+fieldset {
+  padding: 0;
+  border-width: 0; }
+input[type="checkbox"],
+input[type="radio"] {
+  display: inline; }
+label > .label-body {
+  display: inline-block;
+  margin-left: .5rem;
+  font-weight: normal; 
+}
+
+.overlay 
+{
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  top: 0px;
+  left: 0px;
+  background-image: image-url("bg.jpg");
+  background-position: center;
+  background-size:  cover;
+  background-repeat: no-repeat;
+  opacity: 0.15;
+  pointer-events:none;
+}
+
+#logo-image
+{
+  width: 200px;
+  height: 150px;
+  margin: 10px auto;
+
+  background-image: image-url("admin-logo.png");
+  background-position: center;
+  background-size:  auto 86%;
+  background-repeat: no-repeat;
+}
+
+.login-container
+{
+
+  @include vertical-align();
+  position:fixed;
+  left: 0px;
+  //background-color:blue;
+  width: 100%;
+
+  height: auto;
+  overflow: hidden;
+
+  .title
+  {
+    //background-color:blue;
+    text-align: center;
+    text-transform: uppercase;
+    font-size: 12px;
+  }
+  
+  .remember-me
+  {
+    //background-color:red;
+    width: 130px;
+    margin: 9px auto;
+
+    input[type="checkbox"] {
+      display: block;
+      float:left;
+      margin: 2px 8px;
+    }
+
+    label
+    {
+      font-weight: 400;
+      font-size: 10px;
+      color: $c4;
+      text-transform: uppercase;
+    }
+
+  }
+
+}
+
+.login-box
+{
+  width: 280px;
+  margin: 10px auto;
+  padding:4px;
+  box-sizing: border-box;
+  border: solid 1px $c4;
+  @include animation-duration(0.8s);
+
+  //@include border-radius(6px);
+  //background-color: $c1-fg;
+  //@include box-shadow();
+  //@include vertical-align;
+}
+
+%field
+{
+  position: relative;
+  font-size:17px;
+  //background-color:transparentize($c4, 0.9);
+  width: 100%;
+  height: 40px;
+  padding: 0px;
+
+
+::-webkit-input-placeholder {
+   color: transparentize($c4, 0.55);
+   font-style: normal;
+}
+
+:-moz-placeholder { /* Firefox 18- */
+   color: transparentize($c4, 0.55);
+   font-style: normal;
+}
+
+::-moz-placeholder {  /* Firefox 19+ */
+   color: transparentize($c4, 0.55);
+   font-style: normal;
+}
+
+:-ms-input-placeholder {  
+   color: transparentize($c4, 0.55);
+   font-style: normal; 
+}
+
+  input
+  {
+    border:none !important;
+    color: $c4;
+    font-size: 16px;
+    text-align: center;
+    width: 100%;
+    height: 100%;
+    background-color:transparent !important;
+    padding: 0px;
+  }
+
+}
+
+#login-button
+{
+  display: block;
+  margin: 0 auto;
+  width: 280px;
+}
+
+.login-email
+{
+  @extend %field;
+
+}
+
+.login-password
+{
+  @extend %field;
+
+  &:before
+  {
+    bottom: 0px;
+    content: "";
+    display: block;
+    margin: 0 auto;
+    width: 95%;
+    height: 1px;
+    background-color:transparentize($c4, 0.0);
+     //@include background-image(linear-gradient(to left,transparent, transparentize(white, 0.70), transparent));
+  }
+
+}
+
+
+.c4-flash
+{
+  position:fixed;
+  z-index: 300;
+  width: 100%;
+  height: 50px;
+  line-height: 50px;
+  bottom: 0px;
+  color: $c1;
+  text-align: center;
+  @include transition-duration(0.5s);
+  @include transition-property(all);
+  cursor: pointer;
+  @include box-shadow(0px -1px 10px transparentize($c1, 0.5));
+
+  * 
+  {
+    @include user-select(none);
+  }
+}
+
+.success
+{
+  background-color: transparentize($success-c, 0.0);
+  color: saturate(darken($success-c, 40), 60);
+}
+
+.notice
+{
+  background-color: transparentize($notice-c, 0.0);
+  color: saturate(lighten($notice-c, 30), 60);
+}
+
+.alert
+{
+  background-color: transparentize($alert-c, 0.0);
+  color: saturate(darken($alert-c, 40), 60);
+}
+
+.warning
+{
+  background-color: transparentize($warning-c, 0.0);
+  color: saturate(lighten($warning-c, 30), 60);
+}
+
+
+
+
+/* Data displayers
+–––––––––––––––––––––––––––––––––––––––––––––––––– */
+
+.c4-list-collection
+{
+  color: transparentize($dark-c, 0.5);
+
+  .no-content
+  {
+    color: transparentize($c4, 0.1);
+    text-align:center;
+    margin-top: 40px;
+    padding: 40px;
+    //border:dashed 1px transparentize(white, 0.5);
+    border-radius: 5px;
+
+    [class^="icon"]
+    {
+      font-size: x-large;
+    }
+
+  }
+
+  .c4-list-cell
+  {
+    background-color: $light-c;
+    border-radius: 2px;
+    padding: 10px;
+    margin-bottom: 10px;
+    @include box-shadow(0px 1px 2px transparentize(black, 0.6));
+    @include transition-duration(0.5s);
+    @include transition-property(all);
+
+    &:last-child
+    {
+      margin-bottom: 50px;
+    }
+
+    @include tablet
+    {
+      &:hover
+      {
+        @include box-shadow(0px 2px 8px transparentize(black, 0.35));
+      }
+    }
+  }
+
+  .top-row
+  {
+    &:after
+    {
+      content: "";
+      display: block;
+      width: 100%;
+      height: 1px;
+      background-color:transparentize(black, 0.7);
+      margin-bottom: 12px;
+    }
+  }
+
+  .thumbnail
+  {
+    height: 130px;
+    width: 100%;
+    border-radius:2px;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+    background-color: white;
+
+    @include tablet {
+      height: 160px;
+      padding-left:8%;
+      padding-bottom: 8px;
+
+    }
+  }
+
+  .title
+  {
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    font-weight: 300;
+    font-size: 2.1em;
+    line-height: 1.1em;
+    height: 1.1em;
+    overflow: hidden;
+
+    @include tablet {
+      margin-bottom: 10px;
+    }
+
+  }
+
+  .date
+  {
+    width: 100%;
+
+    @include tablet
+    {
+      margin-top:6px;
+      text-align: right;
+    }
+  }
+
+  .properties
+  {
+    margin: 0 10px;
+    ul
+    {
+      margin-bottom: 0px;
+    }
+
+    span[class^="icon-"]
+    {
+      margin-right: 5px;
+    }
+  }
+
+  .description
+  {
+    position: relative;
+    font-size: 0.9em;
+    line-height: 1.4em;
+    height: auto;
+    max-height: 5.6em;
+    overflow: hidden;
+    margin-bottom: 10px;
+    text-align: justify;
+    margin-top: 10px;
+
+    @include tablet 
+    {
+      margin-top: 0px;
+      font-size: 1.1em;
+      margin-bottom: 14px;
+      height: 7em;
+      max-height: 7em;
+    }
+
+    &:before
+    {
+      content:"";
+      position: absolute;
+      display: block;
+      height: 1.4em;
+      bottom: 0px;
+      width: 50%;
+      right: 0px;
+      @include background-image(linear-gradient(to left,$light-c, transparentize($light-c, 0.10), transparentize($light-c, 1.0)));
+    }
+  }
+
+  .buttons-container
+  {
+    @include horizontal-stack();
+
+    a
+    {
+      color:$light-c;
+      &:hover
+      {
+        color: inherit;
+      }
+    }
+
+    *
+    {
+      font-size: 16px;
+      margin: 0 4px;
+
+      &:first-child
+      {
+        margin-left: 0px;
+      }
+      &:last-child
+      {
+        margin-right: 0px;
+      }
+    }
+
+  }
+
+}
+
+.c4-grid-collection
+{    
+
+  .c4-grid-cell
+  {
+    position: relative;
+    display: block;
+    height: 140px;
+    width: 48%;
+    float: left;
+    margin: 1%;
+    text-decoration: none;
+    //border:solid 1px white;
+    box-sizing: border-box;
+    border-radius: 2px;
+    background-color: transparentize(white, 0.95);
+    color: transparentize(white, 0.25);
+
+    @include single-transition(all, 1s);
+
+    @include tablet
+    {
+      height: 200px;
+    }
+
+    &:hover
+    {
+      background-color: transparentize(white, 0.90);
+
+    }
+
+
+
+  }
+
+  .centered
+  {
+    @include vertical-align();
+    position: absolute;
+    height: auto;
+    width: 100%;
+  }
+
+  [class^="icon"]
+  {
+    display: block;
+    width: 100%;
+    text-align: center;
+    font-size: x-large;
+    margin-bottom: 4px;
+    @include tablet
+    {
+      font-size: xx-large;
+    }
+  }
+
+  .name
+  {
+    display: block;
+    width: 100%;
+    text-align: center;
+    font-size: 18px;
+    @include tablet
+    {
+      font-size: 22px;
+    }
+  }
+
+  .description
+  {
+    display: block;
+    margin: 0 5px;
+    font-size: 11px;
+    text-align: center;
+    @include tablet
+    {
+          margin: 0 35px;
+
+      font-size: 13px;
+    }
+  }
+
+  .-nav-only
+  {
+    display: none;
+  }
+
+}

@@ -1,0 +1,11 @@
+Description:
+    Generates a C4 Module
+
+Example:
+    rails generate c4_module NAME 'QUOTED DESCRIPTION' field:type field:type 
+
+    This will create:
+        *All routes
+        *Controller
+        *Model
+        *Views [_form, edit, new, index]

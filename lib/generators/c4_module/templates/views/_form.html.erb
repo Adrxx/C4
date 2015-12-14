@@ -1,0 +1,38 @@
+<%%# Form fields %>
+<%%= form_for(@<%= singular %>,  :url => (@<%= singular %>.new_record? ? main_app.<%= name_ %>_path : main_app.<%= singular %>_path(@<%= singular %>.id)), :html => { :multipart => true }) do |f| %>
+  <%% if @<%= singular %>.errors.any? %>
+    <div class="error-explanation-header">
+      <%%= pluralize(@<%= singular %>.errors.count, "error impidió", "errores impidieron") %> que se guardaran los cambios.
+    </div>
+<%% end %>
+
+<% @model.split().each do |m| %>
+<% type = m.partition(':').last %>
+<% name = m.partition(':').first %>
+<%%# <%= name.capitalize %> %>
+<div class="row">
+  <% if type == 'string' || type == '' %>
+    <%%= full_field(f,:<%= name %>, '<%= name.capitalize %>' ,'<%= name.capitalize %>...') %>
+  <% elsif type == 'text' %>
+    <%%= full_text_area(f,:<%= name %>, '<%= name.capitalize %>' ,'<%= name.capitalize %>...') %>
+  <% elsif type == 'boolean'%>
+    <%%= f.label :<%= name %>, class:'field-options-wrapper' do %>
+        <%%= f.check_box :<%= name %> %><%= name.capitalize %>
+    <%% end %>
+  <% elsif type == 'integer'%>
+    <%%= full_numeric_field(f,:<%= name %>,'<%= name.capitalize %>','<%= name.capitalize %>...') %>
+  <% end %>
+</div>
+<% end %>
+<hr>
+<div class="row">
+  <div class="six columns">
+    <%%= link_to "Salir sin guardar", main_app.<%= name_ %>_path, class: 'c4-button-secondary u-full-width'  %>
+  </div>
+
+  <div class="six columns">
+    <%%= f.submit "Guardar", class: 'c4-button-primary u-full-width' %>
+  </div>
+</div>
+
+<%% end %>
