@@ -10,7 +10,7 @@ Gem::Specification.new do |s|
   s.authors     = ["Adrián Rubio"]
   s.email       = ["adrxxm@gmail.com"]
   s.homepage    = "google.com"
-  s.summary     = "TODO: Summary of C4."
+  s.summary     = "Summary of C4..."
   s.description = "C4 is a CMS scaffolding tool."
   s.license     = "MIT"
 
