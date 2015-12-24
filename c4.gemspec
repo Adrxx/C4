@@ -9,7 +9,7 @@ Gem::Specification.new do |s|
   s.version     = C4::VERSION
   s.authors     = ["Adrián Rubio"]
   s.email       = ["adrxxm@gmail.com"]
-  s.homepage    = "google.com"
+  #s.homepage    = "/"
   s.summary     = "Summary of C4..."
   s.description = "C4 is a CMS scaffolding tool."
   s.license     = "MIT"
