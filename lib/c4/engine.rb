@@ -3,6 +3,7 @@ module C4
     isolate_namespace ::C4
 
     config.to_prepare do
+      Rails.application.config.assets.precompile += %w( c4/admin.css c4/c4.js )
       Devise::SessionsController.layout "c4/admin"
     end
 

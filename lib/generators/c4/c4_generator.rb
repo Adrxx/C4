@@ -18,6 +18,11 @@ class C4Generator < Rails::Generators::NamedBase
 
   end
 
+
+  def add_palette
+    template "_palette.scss.erb", "app/assets/stylesheets/c4/_palette.scss.erb"
+  end
+
   def setup_contact_page
     if yes?('Would you like to install a contact module?')
       #TODO...

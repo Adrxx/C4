@@ -17,13 +17,12 @@ Gem::Specification.new do |s|
   s.files = Dir["{app,config,db,lib,vendor}/**/*", "MIT-LICENSE", "Rakefile", "README.rdoc"]
   s.test_files = Dir["test/**/*"]
 
-  s.add_dependency "rails"
-  s.add_dependency 'devise'
-  s.add_dependency "paperclip"
-  s.add_dependency 'sass-rails'
-  #s.add_dependency 'compass-rails', github: "Compass/compass-rails", branch: "master"
-  s.add_dependency 'coffee-rails'
-  s.add_dependency 'jquery-rails'
+  s.add_dependency "rails", '>= 4.2.4'  
+  s.add_dependency 'devise', '>= 3.5.3'
+  s.add_dependency "paperclip", '>= 4.3.2'
+  s.add_dependency 'sass-rails', '>= 5.0.4'
+  s.add_dependency 'coffee-rails', '>= 4.1.1'
+  s.add_dependency 'jquery-rails', '>= 4.0.5'
 
   s.add_development_dependency "sqlite3"
   s.add_development_dependency 'capistrano-rails'

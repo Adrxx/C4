@@ -153,7 +153,7 @@ $palette: $c1, $c2, $c3, $c4, $c5, $c1-bg, $c2-bg, $c3-bg, $c4-bg, $c5-bg,$c1-fg
   width: 100%;
   height: auto;
   overflow: hidden;
-  @include single-transition(all,0.3s);
+  @include transition(all 0.3s);
   background-color: $c4;
   top:-100%; 
   @include background-image(linear-gradient(to bottom,$c4, transparentize($c4, 0.30), transparentize($c4, 1.0)));
@@ -326,7 +326,7 @@ $palette: $c1, $c2, $c3, $c4, $c5, $c1-bg, $c2-bg, $c3-bg, $c4-bg, $c5-bg,$c1-fg
   margin-bottom: 10px;
   padding-top: $nav-bar-height + 10;
   padding-bottom: 10px;
-  @include box-shadow(0px 1px 3px $c1);
+  box-shadow: 0px 1px 3px $c1;
   color: $c1;
   text-align: center;
 
@@ -782,9 +782,7 @@ label > .label-body {
   border: solid 1px $c4;
   @include animation-duration(0.8s);
 
-  //@include border-radius(6px);
   //background-color: $c1-fg;
-  //@include box-shadow();
   //@include vertical-align;
 }
 
@@ -877,7 +875,7 @@ label > .label-body {
   @include transition-duration(0.5s);
   @include transition-property(all);
   cursor: pointer;
-  @include box-shadow(0px -1px 10px transparentize($c1, 0.5));
+  box-shadow: 0px -1px 10px transparentize($c1, 0.5);
 
   * 
   {
@@ -941,7 +939,7 @@ label > .label-body {
     border-radius: 2px;
     padding: 10px;
     margin-bottom: 10px;
-    @include box-shadow(0px 1px 2px transparentize(black, 0.6));
+    box-shadow: 0px 1px 2px transparentize(black, 0.6);
     @include transition-duration(0.5s);
     @include transition-property(all);
 
@@ -954,7 +952,7 @@ label > .label-body {
     {
       &:hover
       {
-        @include box-shadow(0px 2px 8px transparentize(black, 0.35));
+        box-shadow: 0px 2px 8px transparentize(black, 0.35);
       }
     }
   }
@@ -1115,7 +1113,8 @@ label > .label-body {
     background-color: transparentize(white, 0.95);
     color: transparentize(white, 0.25);
 
-    @include single-transition(all, 1s);
+    @include transition(all 1s);
+
 
     @include tablet
     {

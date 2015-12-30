@@ -149,7 +149,7 @@ $i:1;
 
 @mixin horizontal-stack
 {
-  @include display-flex();
+  @include display(flex);
   @include align-items(center);
   //@include align-content(space-around);
   @include flex-flow(row);

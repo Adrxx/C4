@@ -4,9 +4,6 @@
 @import "mnt-photo-manager";
 
 
-/*
-Batukeira Admin specific styles only
-*/
 
 .dealer_visible_address
 {
@@ -19,7 +16,6 @@ Batukeira Admin specific styles only
 }
 
 
-
 #map-location-picker
 {
   height: 250px;
@@ -30,7 +26,7 @@ Batukeira Admin specific styles only
 .tt-dropdown-menu
 {
   //background-color: white;
-  @include box-shadow();
+  box-shadow: 2px;
   width: 100% !important;
 
 
