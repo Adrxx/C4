@@ -1,5 +1,6 @@
 module C4
   class Engine < ::Rails::Engine
+
     isolate_namespace ::C4
 
     config.to_prepare do
@@ -29,4 +30,7 @@ module C4
     end
 
   end
+
+
 end
+

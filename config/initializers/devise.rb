@@ -1,5 +1,21 @@
 # Use this hook to configure devise mailer, warden hooks and so forth.
 # Many of these configuration options can be set straight in your model.
+
+#DIRTY PLACEMENT
+class CustomFailure < Devise::FailureApp
+  def redirect_url
+    c4.new_user_session_path
+  end
+
+  def respond
+    if http_auth?
+      http_auth
+    else
+      redirect
+    end
+  end
+end
+
 Devise.setup do |config|
   # The secret key used by Devise. Devise uses this key to generate
   # random tokens. Changing this key will render invalid all existing
@@ -238,10 +254,7 @@ Devise.setup do |config|
   # If you want to use other strategies, that are not supported by Devise, or
   # change the failure app, you can configure them inside the config.warden block.
   #
-  # config.warden do |manager|
-  #   manager.intercept_401 = false
-  #   manager.default_strategies(scope: :user).unshift :some_external_strategy
-  # end
+
 
   # ==> Mountable engine configurations
   # When using Devise inside an engine, let's call it `MyEngine`, and this engine
@@ -253,7 +266,11 @@ Devise.setup do |config|
   # The router that invoked `devise_for`, in the example above, would be:
   config.router_name = :c4
   config.parent_controller = 'C4::ApplicationController'
-  #
+  
+
+  config.warden do |manager|
+    manager.failure_app = CustomFailure
+  end
   # When using omniauth, Devise cannot automatically set Omniauth path,
   # so you need to do it manually. For the users scope, it would be:
   #config.omniauth_path_prefix = '/c4'

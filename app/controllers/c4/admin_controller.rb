@@ -7,6 +7,7 @@ module C4
     def index
     end
 
+
     def contact
       if request.patch?
         if @prefs.update(prefs_params)
