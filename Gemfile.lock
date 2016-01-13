@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    c4 (0.0.4)
+    c4 (0.0.5)
       coffee-rails (>= 4.1.1)
       devise (>= 3.5.3)
       jquery-rails (>= 4.0.5)

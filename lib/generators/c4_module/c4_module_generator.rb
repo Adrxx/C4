@@ -4,8 +4,10 @@ class C4ModuleGenerator < Rails::Generators::Base
   argument :attributes, type: :array, default: [], banner: "name description field:type field:type"
 
   def add_module
+
     @name = attributes[0]
     desc = attributes[1]
+
     #Add Route
     route "resources :#{name_}, path: 'admin/#{name_}', except: :show, path_names: { new: 'nuevo', edit: 'editar' }, module: 'c4'"
 

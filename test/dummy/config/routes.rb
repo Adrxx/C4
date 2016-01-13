@@ -1,7 +1,9 @@
 Rails.application.routes.draw do
   
 
-  resources :announcements, path: 'admin/announcements', except: :show, path_names: { new: 'nuevo', edit: 'editar' }, module: 'c4'
+  get 'admin/contacto' => 'c4/admin#contact', as: 'contact'
+  patch 'admin/contacto' => 'c4/admin#contact'
+  
   mount C4::Engine => "/admin"
 
 end

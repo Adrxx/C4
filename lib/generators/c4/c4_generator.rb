@@ -20,13 +20,27 @@ class C4Generator < Rails::Generators::NamedBase
 
 
   def add_palette
-    template "_palette.scss.erb", "app/assets/stylesheets/c4/_palette.scss.erb"
+    if yes?('Would you like to install a custom palette?')
+      template "_palette.scss.erb", "app/assets/stylesheets/c4/_palette.scss.erb" 
+    end
   end
 
   def setup_contact_page
     if yes?('Would you like to install a contact module?')
-      #TODO...
-      puts "You'll have to wait for version 2.0..."
+
+      route "get 'admin/contacto' => 'c4/admin#contact', as: 'contact' "
+      route "patch 'admin/contacto' => 'c4/admin#contact' "
+
+      prepend_to_file "app/views/c4/_navlinks.html.erb" do
+      "<%= link_to main_app.contact_path, class: 'c4-grid-cell' do %>
+        <div class='centered'>
+          <span class='icon-email'></span>
+          <span class='name'>Contacto</span>
+          <span class='description'>Edita los datos de contacto.</span>
+        </div>
+      <% end %>"
+      end
+
     end
   end
 

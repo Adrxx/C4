@@ -68,6 +68,14 @@ module C4
       str.html_safe      
     end
 
+    def full_field_tag(name,title,placeholder)
+      str = ''
+      str += label_tag(name, title)
+      str += text_field_tag(name,nil, class: 'u-full-width', placeholder: placeholder)
+      str.html_safe
+    end
+
+
     def full_password_field(form,name,title,placeholder)
       str = ''
       str += form.label(name, title)

@@ -25,6 +25,30 @@ $(document).on 'ready', ->
     t.style.height = "1px";
     t.style.height = (t.scrollHeight)+"px"
 
+
+  #Contact Module custom fields js
+  $('.add-field').on 'click', ->
+    i = $('.other-fields').children().length
+    $('.other-fields').append "<hr class='c4-mini' style='margin-bottom: 20px;'>
+    <div class='row animated fadeIn'>
+      <div class='five columns'>
+        <input type='text' class='u-full-width' name='extra[#{i}][key]' placeholder='Nombre'>
+      </div>
+      <div class='five columns'>
+        <input type='text' class='u-full-width' name='extra[#{i}][value]' placeholder='Valor'>
+      </div>
+      <div class='two columns'>
+        <div class='c4-button-warning u-full-width remove-field'><input type='hidden' value='0' name='extra[#{i}][_destroy]'>Borrar</div>
+      </div>
+    </div>"
+
+  $('.other-fields').on "click", '.remove-field', ->
+    $(@).find('input').val '1'
+    $(@).parent().parent().hide('slow')
+    $(@).parent().parent().prev().hide('slow')
+
+
+
   #_______________________________________________ Notifications
 
   dismissNotification = (notification) ->
