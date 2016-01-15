@@ -2,9 +2,17 @@
 
 This project rocks and uses MIT-LICENSE.
 
+RECENTLY ADDED
+* Contact Module
+* Morphed Skeleton framework
+* Only ES language
+
+
 TO-DO
 * Maybe 404.html pages?
-* Contact module
+* Easy mailer form integration
+* ES EN language selection
+
 
 LONG TERM TO-DO
 * More deep module customization
