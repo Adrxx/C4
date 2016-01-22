@@ -433,6 +433,12 @@ hr.c4-mini {
   {
     color: $c1;
   }
+  
+  .text-button
+  {
+    
+  }
+
 }
 
 .c4-button-primary
@@ -1067,8 +1073,9 @@ label > .label-body {
   {
     @include horizontal-stack();
 
-    a
+    a:not(.text-only)
     {
+      font-size: 16px;
       color:$light-c;
       &:hover
       {
@@ -1078,9 +1085,7 @@ label > .label-body {
 
     *
     {
-      font-size: 16px;
       margin: 0 4px;
-
       &:first-child
       {
         margin-left: 0px;

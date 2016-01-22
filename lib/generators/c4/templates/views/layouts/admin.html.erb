@@ -21,7 +21,7 @@
   <%%#= color_palette() %>
   <%% if user_signed_in? #NAV BAR %>
     <%%= link_to c4.root_path , class: 'c4-home-button' do %>
-      <%= name_title %>
+      <%= name_title.split.join %>
     <%% end %>
     <div class="c4-menu-button">
       <span class="icon-menu"></span>

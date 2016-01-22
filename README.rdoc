@@ -1,8 +1,10 @@
 = C4
+Version 0.0.8 Alpha
 
 This project rocks and uses MIT-LICENSE.
 
 RECENTLY ADDED
+* Text-only buttons
 * Contact Module
 * Morphed Skeleton framework
 * Only ES language
