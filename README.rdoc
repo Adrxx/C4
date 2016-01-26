@@ -11,6 +11,7 @@ RECENTLY ADDED
 
 
 TO-DO
+*** Fast Contact display partial ;)
 * Maybe 404.html pages?
 * Easy mailer form integration
 * ES EN language selection
