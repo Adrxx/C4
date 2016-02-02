@@ -6,4 +6,6 @@ Rails.application.routes.draw do
   
   mount C4::Engine => "/admin"
 
+  get '/test' => 'application#tests'
+
 end

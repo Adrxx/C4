@@ -8,8 +8,14 @@ module C4
       Devise::SessionsController.layout "c4/admin"
     end
 
-    initializer "c4.ensure_user" do |app|
 
+    initializer 'c4.action_controller' do |app|
+      ActiveSupport.on_load :action_controller do
+        helper C4::Engine.helpers
+      end
+    end
+
+    initializer "c4.ensure_user" do |app|
       if ActiveRecord::Base.connection.table_exists? 'c4_users'
         unless C4::User.any?
           password = "prueba" #SecureRandom::hex(4)
@@ -19,18 +25,12 @@ module C4
           u.role = "admin"
           u.password = password
           u.password_confirmation = password
-
           puts "Error: Could not generate initial superuser" unless u.save
           puts "backup C4 superuser generated..."
-
         end
-
       end
-
     end
 
   end
-
-
 end
 

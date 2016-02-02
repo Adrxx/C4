@@ -16,7 +16,6 @@ $(document).on 'ready', ->
     else
       $('.c4-nav').addClass("nav-displayed")
 
-
   #_______________________________________________ Smart Behaiviors
 
   #Autoresize text area to fit its content
@@ -80,4 +79,11 @@ $(document).on 'ready', ->
 
 
   #_______________________________________________ Input Tools
+  
+  $('#c4-contact-form').on("ajax:success", (e, data, status, xhr) ->
+    $(@).html data
+    $(@).find('button').html 'Intentar de nuevo'
+  ).on "ajax:error", (e, xhr, status, error) ->
+    $(@).find('button').html 'Intentar de nuevo'
+    alert "Hubo un error al enviar el correo, intente de nuevo más tarde."
     

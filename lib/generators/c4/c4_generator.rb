@@ -21,7 +21,7 @@ class C4Generator < Rails::Generators::NamedBase
 
   def add_palette
     if yes?('Would you like to install a custom palette?')
-      template "_palette.scss.erb", "app/assets/stylesheets/c4/_palette.scss.erb" 
+      template "_palette.scss.erb", "app/assets/stylesheets/_palette.scss.erb" 
     end
   end
 
@@ -40,6 +40,14 @@ class C4Generator < Rails::Generators::NamedBase
         </div>
       <% end %>"
       end
+
+      template "models/contact.rb", "app/models/c4/contact.rb" 
+
+      template "views/contact.erb", "app/views/mail_form/contact.erb" 
+
+      template "views/_contact_sheet.html.erb", "app/views/_contact_sheet.html.erb"   
+
+      template "views/_contact_success.html.erb", "app/views/_contact_success.html.erb" 
 
     end
   end

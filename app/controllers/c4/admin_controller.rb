@@ -24,6 +24,18 @@ module C4
       end
     end
 
+    def send_contact_mail
+      @contact = Contact.new(params[:contact])
+      @contact.request = request
+      #byebug
+
+      if @contact.deliver
+        render partial: 'contact_success'
+      else
+        render partial: 'contact_sheet'
+      end
+    end
+  
 
     private
 

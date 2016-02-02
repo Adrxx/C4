@@ -1,0 +1,9 @@
+ <h2>Envíamos un correo</h2>
+ <%= form_for @contact, :url => c4.send_contact_mail_path, :method => :post, remote: true, :html => {class:'animated fadeIn'} do |f| %>
+  <%= full_field f, :name, "Nombre",'' %>
+  <%= full_field f, :email, "Correo electrónico", '' %>
+  <%= full_text_area f, :message, "Mensaje",'' %>
+
+  <%= f.hidden_field :nickname %>
+  <%= f.button :Enviar, class: 'send-button' %>
+<% end %>

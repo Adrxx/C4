@@ -6,6 +6,9 @@ C4::Engine.routes.draw do
 
     root "admin#index"
 
+    #MAIL
+    post '/send-contact-mail' => 'admin#send_contact_mail', as: 'send_contact_mail'
+
 
     resources :users, path: 'usuarios', except: :show, path_names: { new: 'nuevo', edit: 'editar' }
 

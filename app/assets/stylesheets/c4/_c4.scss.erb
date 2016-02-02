@@ -13,6 +13,7 @@ Adrián Rubio 2015
 * Basic HTML Elements
 * Buttons
 * Inputs
+* Forms
 * Notifications
 * Data displayers... Cells
 * Smart Behaiviors
@@ -552,6 +553,128 @@ input[type="text"]
 
 /* Forms
 –––––––––––––––––––––––––––––––––––––––––––––––––– */
+
+
+.c4-contact-data
+{
+  
+  padding: 80px 40px;
+  height: auto;
+  //background-color: red;
+  float: left;
+  width: 100%;
+
+  @include desktop-hd
+  {
+    //height: 100vh;
+    width: calc( 100% - 400px );
+      padding-bottom: 0px;
+
+  }
+
+  .data-title
+  {
+    color: white;
+    font-size: 1.2em;
+    @include tablet
+    {
+      padding-left: 25px;
+    }
+
+  }
+
+  .data-list
+  {
+    color: white;
+    @include tablet
+    {
+      padding-left: 50px;
+    }
+
+    a
+    {
+      text-decoration: none;
+      //color: blue;
+    }
+  }
+
+}
+
+.c4-contact-mailer
+{
+  background-color:$c1;
+  position: relative;
+
+  float: left;
+  height:auto;
+  width: 100%;
+
+  padding: 30px 20px;
+
+  box-shadow: 0px 1px 10px transparentize(black, 0.6);
+
+
+  @include desktop-hd
+  {
+    padding: 30px 0px;
+    width: 400px;
+    height: 100vh;
+
+  }
+
+  h2
+  {
+    text-align: center;
+  }
+
+  .mailer-vertical-center
+  {
+
+    height: auto;
+
+
+    @include desktop-hd
+    {  
+      position: absolute;
+      top: 50%;
+      width: 90%;
+      margin-left: 5%;
+
+      @include transform(translateY(-50%));
+      
+    }
+
+  }
+
+  .send-button
+  {
+    text-decoration: none;
+    width: 100%;
+    padding: 7px 20px;
+    border: solid 2px $c1;
+    color:  $c1;
+
+    display: inline-block;
+
+    @include transition-duration(0.3s);
+    @include transition-property(all);
+
+      &:after
+      {
+        display: inline-block;
+        margin-left: 13px;
+        margin-bottom: 0px;
+        content: "";
+        width: 0;
+        height: 0;
+        border-style: solid;
+        border-width: 6px 0 6px 6px;
+        border-color: transparent transparent transparent $c1;
+
+      }
+    }
+
+}
 
 .field-options-wrapper
 {
