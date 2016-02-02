@@ -19,6 +19,7 @@ Gem::Specification.new do |s|
 
   s.add_dependency "rails", '>= 4.2.4'  
   s.add_dependency 'devise', '>= 3.5.3'
+  s.add_dependency 'mail_form', '>= 1.5.1'
   s.add_dependency "paperclip", '>= 4.3.2'
   s.add_dependency 'sass-rails', '>= 5.0.4'
   s.add_dependency 'coffee-rails', '>= 4.1.1'
