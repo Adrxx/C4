@@ -19,7 +19,7 @@ module C4
           @template.content_tag :div, m, class: 'error-message'
         end
 
-        label(label, title) + text_area(label, *args) + errors.join("\n")
+        label(label, title) + eval("#{name}(label, *args)") + errors.join("\n")
       end
     end
 

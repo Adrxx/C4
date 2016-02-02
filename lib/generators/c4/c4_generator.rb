@@ -41,13 +41,15 @@ class C4Generator < Rails::Generators::NamedBase
       <% end %>"
       end
 
-      template "models/contact.rb", "app/models/c4/contact.rb" 
+      template "models/contact.rb", "app/models/c4/contact.rb"
 
-      template "views/contact.erb", "app/views/mail_form/contact.erb" 
+      template "views/contact.erb", "app/views/mail_form/contact.erb"
 
-      template "views/_contact_sheet.html.erb", "app/views/c4/_contact_sheet.html.erb"   
+      template "views/_contact_sheet.html.erb", "app/views/c4/_contact_sheet.html.erb"
 
-      template "views/_contact_success.html.erb", "app/views/c4/_contact_success.html.erb" 
+      template "views/_contact_data.html.erb", "app/views/c4/_contact_data.html.erb"
+
+      template "views/_contact_success.html.erb", "app/views/c4/_contact_success.html.erb"
 
     end
   end
