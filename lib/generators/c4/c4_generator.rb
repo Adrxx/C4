@@ -45,9 +45,9 @@ class C4Generator < Rails::Generators::NamedBase
 
       template "views/contact.erb", "app/views/mail_form/contact.erb" 
 
-      template "views/_contact_sheet.html.erb", "app/views/_contact_sheet.html.erb"   
+      template "views/_contact_sheet.html.erb", "app/views/c4/_contact_sheet.html.erb"   
 
-      template "views/_contact_success.html.erb", "app/views/_contact_success.html.erb" 
+      template "views/_contact_success.html.erb", "app/views/c4/_contact_success.html.erb" 
 
     end
   end
