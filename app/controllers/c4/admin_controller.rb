@@ -1,14 +1,13 @@
 module C4
   class AdminController < ApplicationController
 
-    before_action :authenticate_user!
+    before_action :authenticate_user!, except: [:send_contact_mail]
     before_action :get_prefs, only: [:contact]
 
     def index
     end
 
     def contact
-      
       if request.patch?
 
         if @prefs.valid?
