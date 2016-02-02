@@ -6,7 +6,7 @@ module C4
     def c4_contact_mailer
       "<div class='c4-contact-mailer'>
         <div id='c4-contact-form' class='mailer-vertical-center'>
-          #{render 'c4/contact_sheet'}
+          #{render 'c4/admin/contact_sheet'}
         </div>
       </div>
       ".html_safe
@@ -15,7 +15,6 @@ module C4
     def c4_contact_data
       render 'c4/contact_data'
     end
-    
 
     #DEBUGGING HELPERS
     

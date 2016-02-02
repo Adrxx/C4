@@ -1,7 +1,5 @@
 tests
+<%# byebug %>
+<%= c4_contact_data %>
+<%= c4_contact_mailer %>
 
-<%= form_for @contact, :url => c4.root_path, :method => :post, remote: true, :html => {class:'animated fadeIn'} do |f| %>
-
-  <%= f.c4_text_field :email, 'Holas', 'dasd' %>
-  <%= f.button :Enviar, class: 'send-button' %>
-<% end %>

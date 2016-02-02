@@ -15,11 +15,11 @@ module C4
         extracted[:placeholder] = placeholder
         args << extracted
 
-        errors = object.errors[label].map do |m|
+        err = object.errors[label].map do |m|
           @template.content_tag :div, m, class: 'error-message'
         end
 
-        label(label, title) + eval("#{name}(label, *args)") + errors.join("\n")
+        label(label, title) + eval("#{name}(label, *args)") + err.join("\n").html_safe
       end
     end
 

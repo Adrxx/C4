@@ -5,6 +5,6 @@ class ApplicationController < ActionController::Base
 
 
   def tests
-    @contact = C4::User.new
+
   end
 end

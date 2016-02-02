@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    c4 (0.1.1)
+    c4 (0.1.0)
       coffee-rails (>= 4.1.1)
       devise (>= 3.5.3)
       jquery-rails (>= 4.0.5)
@@ -134,7 +134,7 @@ GEM
       activesupport (>= 4.2.0.beta, < 5.0)
       nokogiri (~> 1.6.0)
       rails-deprecated_sanitizer (>= 1.0.1)
-    rails-html-sanitizer (1.0.2)
+    rails-html-sanitizer (1.0.3)
       loofah (~> 2.0)
     railties (4.2.5)
       actionpack (= 4.2.5)
@@ -154,7 +154,7 @@ GEM
     sprockets (3.5.2)
       concurrent-ruby (~> 1.0)
       rack (> 1, < 3)
-    sprockets-rails (3.0.0)
+    sprockets-rails (3.0.1)
       actionpack (>= 4.0)
       activesupport (>= 4.0)
       sprockets (>= 3.0.0)
@@ -177,6 +177,7 @@ DEPENDENCIES
   byebug
   c4!
   capistrano-rails
+  mail_form
   sqlite3
 
 BUNDLED WITH
