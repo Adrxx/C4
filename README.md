@@ -23,7 +23,7 @@ LONG TERM TO-DO
 
 ###Some tools to import:
 * SASS (Last one required for Mailer Behaivior)
-```
+```sass
 @import "normalize.css/normalize";
 @import "animate.css/animate";
 @import "bourbon/app/assets/stylesheets/bourbon";
@@ -31,7 +31,7 @@ LONG TERM TO-DO
 @import "c4/_morphed-skeleton";
 @import "c4/_c4";
 ```
-* CoffeScript with sprockets (Required for Mailer Behaivior)
-```
+* CoffeeScript with sprockets (Required for Mailer Behaivior)
+```coffeescript
 //= require c4/c4
 ```
