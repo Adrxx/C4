@@ -35,3 +35,10 @@ LONG TERM TO-DO
 ```coffeescript
 //= require c4/c4
 ```
+
+#Useful commands
+```erb
+<%= c4_queries_test %>
+<%= c4_contact_data %>
+<%= c4_contact_mailer %>
+```
