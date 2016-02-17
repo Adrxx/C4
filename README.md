@@ -22,7 +22,7 @@ LONG TERM TO-DO
 * Deeper module customization
 
 ###Some tools to import:
-*SASS (Last one required for Mailer Behaivior)
+* SASS (Last one required for Mailer Behaivior)
 ```
 @import "normalize.css/normalize";
 @import "animate.css/animate";
