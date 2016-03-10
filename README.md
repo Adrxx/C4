@@ -1,9 +1,10 @@
 #C4
-###Version 0.1.0 Beta
+###Version 0.1.1 Beta
 
 This project rocks and uses MIT-LICENSE.
 
 RECENTLY ADDED
+* Fixed roles setup bug
 * Fast Contact display partial ;)
 * Contact Mailer too!
 * Text-only buttons

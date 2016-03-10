@@ -5,7 +5,7 @@ module C4
 
     before_action :only_admin_permission, only: [:index, :new, :create, :destroy] #Capturist cannot call these
     before_action :only_itself_permission, only: [:edit, :update] #Capturist can edit/update its own user only
-    
+
 
     layout 'c4/admin'
 
@@ -98,7 +98,12 @@ module C4
 
       # Never trust parameters from the scary internet, only allow the white list through.
       def user_params
-        params.require(:user).permit(:email, :password, :password_confirmation)
+        if current_user.role == "admin"
+          params.require(:user).permit(:email, :password, :role, :password_confirmation)
+        else
+          params.require(:user).permit(:email, :password, :password_confirmation)
+        end
       end
+
   end
 end
