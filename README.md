@@ -1,5 +1,5 @@
-#C4
-###Version 0.1.1 Beta
+# C4
+### Version 0.1.1 Beta
 
 This project rocks and uses MIT-LICENSE.
 
@@ -22,7 +22,7 @@ TO-DO
 LONG TERM TO-DO
 * Deeper module customization
 
-###Some tools to import:
+### Some tools to import:
 * SASS (Last one required for Mailer Behaivior)
 ```sass
 @import "normalize.css/normalize";
